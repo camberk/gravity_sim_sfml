@@ -12,10 +12,21 @@
 class Sim
 {
 private:
+    sf::RenderWindow* window;
+    sf::Event sfmlEvent;
 
+    void initVars();
 public:
     Sim();
     ~Sim();
+
+    void run();
+
+    void update();
+    void render();
+    void pollEvents();
+
+
 };
 
 #endif

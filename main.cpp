@@ -1,6 +1,8 @@
+#include "Sim.h"
 #include <iostream>
 
 int main() {
-    std::cout << "hello world" << std::endl;
+    Sim sim;
+    sim.run();
     return 0;
 }
