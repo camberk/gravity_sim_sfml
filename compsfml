@@ -11,4 +11,4 @@
 # See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -Eeuo pipefail
 
-g++ main.cpp Sim.cpp -I/user/local/Cellar/sfml/2.5.1_1/include -g -o prog -L/usr/local/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window -lsfml-system
+g++ main.cpp Sim.cpp Source.cpp -I/user/local/Cellar/sfml/2.5.1_1/include -g -o prog -L/usr/local/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window -lsfml-system

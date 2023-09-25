@@ -8,12 +8,14 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+#include "Source.h"
 
 class Sim
 {
 private:
     sf::RenderWindow* window;
     sf::Event sfmlEvent;
+    Source s_shape;
 
     void initVars();
 public:

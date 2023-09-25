@@ -5,7 +5,11 @@ void Sim::initVars() {
     this->window->setFramerateLimit(60);
 }
 
-Sim::Sim()
+/*
+Particle takes position x and y, velocity x and y, and radius
+Source takes position x and y, gravity strength, and radius
+*/
+Sim::Sim() : s_shape(Source(800.f, 500.f, 6000.f, 40.f))
 {
     this->initVars();
 }
@@ -44,5 +48,6 @@ void Sim::update() {
 
 void Sim::render() {
     this->window->clear();
+    this->s_shape.render(*this->window);
     this->window->display();
 }
