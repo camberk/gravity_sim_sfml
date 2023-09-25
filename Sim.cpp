@@ -2,14 +2,14 @@
 
 void Sim::initVars() {
     this->window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "sim", sf::Style::Close | sf::Style::Titlebar);
-    this->window->setFramerateLimit(60);
+    this->window->setFramerateLimit(60); // limit the framereate
 }
 
 /*
 Particle takes position x and y, velocity x and y, and radius
 Source takes position x and y, gravity strength, and radius
 */
-Sim::Sim() : s_shape(Source(800.f, 500.f, 6000.f, 40.f))
+Sim::Sim() : shape(Particle(600.f, 700.f, 5.f, 0.f, 20.f)), s_shape(Source(800.f, 500.f, 6000.f, 40.f))
 {
     this->initVars();
 }
@@ -44,10 +44,15 @@ void Sim::pollEvents() {
 
 void Sim::update() {
     this->pollEvents();
+    this->shape.updatePhysics(this->s_shape);
 }
 
 void Sim::render() {
     this->window->clear();
+
+    this->shape.render(*this->window);
     this->s_shape.render(*this->window);
+
+
     this->window->display();
 }

@@ -8,6 +8,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+#include "Particle.h"
 #include "Source.h"
 
 class Sim
@@ -15,6 +16,7 @@ class Sim
 private:
     sf::RenderWindow* window;
     sf::Event sfmlEvent;
+    Particle shape;
     Source s_shape;
 
     void initVars();
