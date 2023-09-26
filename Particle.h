@@ -26,6 +26,8 @@ class Particle {
 
         void render(sf::RenderTarget& target);
         void updatePhysics(Source &source);
+        sf::Vector2f get_pos();
+        sf::Vector2f get_vel();
 
         
 };

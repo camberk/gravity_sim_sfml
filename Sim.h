@@ -10,14 +10,19 @@
 #include <SFML/Network.hpp>
 #include "Particle.h"
 #include "Source.h"
+#include <vector>
+#include "Rng.h"
 
 class Sim
 {
 private:
     sf::RenderWindow* window;
     sf::Event sfmlEvent;
-    Particle shape;
-    Source s_shape;
+    std::vector<Particle*> particles;
+    Source source_shape;
+    float max_screen_dim_x;
+    float max_screen_dim_y;
+    Rng rng;
 
     void initVars();
 public:
@@ -29,6 +34,7 @@ public:
     void update();
     void render();
     void pollEvents();
+    void particleFactory(float pos_x, float pos_y, float vel_x, float vel_y, float radius, int num_particles);
 
 
 };

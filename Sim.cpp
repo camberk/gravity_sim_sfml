@@ -1,7 +1,12 @@
 #include "Sim.h"
 
 void Sim::initVars() {
-    this->window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "sim", sf::Style::Close | sf::Style::Titlebar);
+    this->window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "sim", sf::Style::Close | sf::Style::Titlebar | sf::Style::Fullscreen);
+    this->max_screen_dim_x = this->window->getSize().x;
+    this->max_screen_dim_y = this->window->getSize().y;
+    float x_mid = this->max_screen_dim_x / 2;
+    float y_mid = this->max_screen_dim_x / 2;
+    this->source_shape = Source(800.f, 500.f, 6000.f, 40.f);
     this->window->setFramerateLimit(60); // limit the framereate
 }
 
@@ -9,13 +14,17 @@ void Sim::initVars() {
 Particle takes position x and y, velocity x and y, and radius
 Source takes position x and y, gravity strength, and radius
 */
-Sim::Sim() : shape(Particle(600.f, 700.f, 5.f, 0.f, 20.f)), s_shape(Source(800.f, 500.f, 6000.f, 40.f))
+Sim::Sim() : rng(Rng(30)), source_shape(Source(0.f, 0.f, 0.f, 0.f))
 {
     this->initVars();
+    this->particleFactory(600.f, 700.f, 5.f, 0.f, 10.f, 10);
 }
 
 Sim::~Sim()
 {
+    for(size_t i = 0; i < this->particles.size(); i++) {
+        delete particles[i];
+    }
     delete this->window;
 }
 
@@ -44,15 +53,29 @@ void Sim::pollEvents() {
 
 void Sim::update() {
     this->pollEvents();
-    this->shape.updatePhysics(this->s_shape);
+    for(size_t i = 0; i < this->particles.size(); i++) {
+        particles[i]->updatePhysics(this->source_shape);
+    }
 }
 
 void Sim::render() {
     this->window->clear();
 
-    this->shape.render(*this->window);
-    this->s_shape.render(*this->window);
-
+    this->source_shape.render(*this->window);
+    for(size_t i = 0; i < this->particles.size(); i++) {
+        particles[i]->render(*this->window);
+    }
 
     this->window->display();
+}
+
+void Sim::particleFactory(float pos_x, float pos_y, float vel_x, float vel_y, float radius, int num_particles) {
+    for(size_t i = 0; i < num_particles; ++i) {
+        if(i != 0) {
+            pos_x += num_particles + rng.getRandomNumber();
+            pos_y += num_particles + rng.getRandomNumber();
+        }
+        particles.push_back(new Particle(pos_x, pos_y, vel_x, vel_y, radius));
+    }
+    
 }
