@@ -30,14 +30,14 @@ void Particle::updatePhysics(Source &source) {
     this->vel.y += acceleration_y;
     this->pos.x += this->vel.x;
     this->pos.y += this->vel.y;
-    // std::cout << std::endl;
-    // std::cout << "This Update Start" << std::endl;
-    // std::cout << "vel x: " << this->vel.x << std::endl;
-    // std::cout << "vel y: " << this->vel.y << std::endl;
-    // std::cout << "pos x: " << this->pos.x << std::endl;
-    // std::cout << "pos y: " << this->pos.y << std::endl;
-    // std::cout << "This Update End" << std::endl;
-    // std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "This Update Start" << std::endl;
+    std::cout << "vel x: " << this->vel.x << std::endl;
+    std::cout << "vel y: " << this->vel.y << std::endl;
+    std::cout << "pos x: " << this->pos.x << std::endl;
+    std::cout << "pos y: " << this->pos.y << std::endl;
+    std::cout << "This Update End" << std::endl;
+    std::cout << std::endl;
 }
 
 sf::Vector2f Particle::get_pos() {

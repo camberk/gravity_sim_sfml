@@ -22,7 +22,6 @@ private:
     Source source_shape;
     float max_screen_dim_x;
     float max_screen_dim_y;
-    Rng rng;
 
     void initVars();
 public:
